@@ -2,6 +2,7 @@ import random
 
 user_wins = 0
 computer_wins = 0
+tie_count = 0
 
 options = ["rock", "paper", "scissors"]
 
@@ -45,7 +46,7 @@ while True:
 print("You won", str(user_wins), "times")
 
 print("Computer won", str(computer_wins), "times")
-
+print("Ties:", str(tie_count))
 
 
         
