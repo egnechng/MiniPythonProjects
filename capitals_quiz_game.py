@@ -1,11 +1,12 @@
 from countryinfo import CountryInfo
 import random
 
+
 country_names = [
     "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria", 
     "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", 
-    "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Côte d'Ivoire", "Cabo Verde", 
-    "Cambodia", "Cameroon", "Canada", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo", 
+    "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Ivory Coast", "Cabo Verde", 
+    "Cambodia", "Cameroon", "Canada", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Republic of the Congo", 
     "Costa Rica", "Croatia", "Cuba", "Cyprus", "Czech Republic", "Democratic Republic of the Congo", "Denmark", "Djibouti", 
     "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini", 
     "Ethiopia", "Fiji", "Finland", "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada", "Guatemala", 
@@ -36,10 +37,19 @@ score = 0
 while True:
 
     country = random.choice(country_names)
-    answer = input("What is the capital of " + country + "? ").lower()
-    if answer == CountryInfo(country).capital().lower():
-        print('Correct!')
-        score += 1
+    answer = input("What is the capital of " + country + "? (Press Enter to skip) ").lower()
+    try:
+        if answer == CountryInfo(country).capital().lower():
+            print('Correct!')
+            score += 1
+            continue
+    except KeyError:
+        print("country not found")
+        continue  
+        
+    if answer == "":
+        print("Skipped. Correct answer is " + CountryInfo(country).capital())
+        continue
     else:
         print('Incorrect! Correct answer is ' + CountryInfo(country).capital())
         break
