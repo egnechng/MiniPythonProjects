@@ -33,10 +33,13 @@ if playing.lower() != "y":
 
 print("Lets play!")
 score = 0
-
+used = []
 while True:
-
+    
     country = random.choice(country_names)
+    while country in used:
+        country = random.choice(country_names)
+    
     answer = input("What is the capital of " + country + "? (Press Enter to skip) ").lower()
     try:
         if answer == CountryInfo(country).capital().lower():
